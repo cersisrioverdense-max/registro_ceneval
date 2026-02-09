@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sección 4 · Entorno social</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .contenedor {
+            background: #fff;
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #003366;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #003366;
+            box-shadow: 0 0 8px rgba(0,51,102,0.3);
+            outline: none;
+        }
+
+        .bienesservicios p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .bienesservicios label {
+            margin: 0;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px 0;
+            background-color: #003366;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 30px;
+        }
+
+        button:hover {
+            background-color: #0055aa;
+        }
+
+        /* Mensajes de error */
+        .errores {
+            background: #ffe5e5;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #ff9999;
+            border-radius: 8px;
+            color: #cc0000;
+        }
+
+        @media (max-width: 600px) {
+            .contenedor {
+                padding: 25px 15px;
+            }
+
+            .bienesservicios p {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .bienesservicios select {
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <h2>Sección 4 · Entorno social</h2>
+
+    {% if form.errors %}
+        <div class="errores">
+            <strong>Revisa los siguientes errores:</strong>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <p>
+            <label><strong>1.</strong> ¿Cuántas horas a la semana dedicas a trabajar?</label>
+            {{ form.horas_trabajo }}
+        </p>
+
+        <p>
+            <label><strong>2.</strong> ¿Cuál es el máximo nivel de estudios de la jefa o el jefe de tu hogar?</label>
+            {{ form.estudios_jefe_hogar }}
+        </p>
+
+        <p>
+            <label><strong>3.</strong> ¿Cuál es el máximo nivel de estudios de tu madre (aunque haya fallecido)?</label>
+            {{ form.estudios_madre }}
+        </p>
+
+        <p>
+            <label><strong>4.</strong> ¿Cuál es el máximo nivel de estudios de tu padre (aunque haya fallecido)?</label>
+            {{ form.estudios_padre }}
+        </p>
+
+        <p>
+            <label><strong>5.</strong> ¿Cuántos libros hay en tu casa? (No incluyas revistas ni libros escolares)</label>
+            {{ form.libros_en_casa }}
+        </p>
+
+        <p>
+            <label><strong>6.</strong> ¿Hasta qué nivel educativo desean tus padres que estudies?</label>
+            {{ form.nivel_educativo_esperado }}
+        </p>
+
+        <p>
+            <label><strong>7.</strong> ¿Cuántas personas mayores de 14 años que viven en tu hogar trabajaron el último mes?</label>
+            {{ form.personas_trabajando }}
+        </p>
+
+        <h3>Bienes y servicios en tu hogar</h3>
+        <div class="bienesservicios">
+            <p><label>8. Computadora</label> {{ form.computadora }}</p>
+            <p><label>9. Televisor</label> {{ form.televisor }}</p>
+            <p><label>10. Automóvil</label> {{ form.automovil }}</p>
+            <p><label>11. Baños completos</label> {{ form.banos_completos }}</p>
+            <p><label>12. Teléfono celular inteligente</label> {{ form.celular_inteligente }}</p>
+            <p><label>13. Servicio de internet</label> {{ form.internet }}</p>
+            <p><label>14. Cuartos para dormir</label> {{ form.cuartos_dormir }}</p>
+        </div>
+
+        <button type="submit">Guardar y finalizar</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro CENEVAL - Datos Personales</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .contenedor {
+            background: #fff;
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2, h3 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #003366;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #003366;
+            box-shadow: 0 0 8px rgba(0,51,102,0.3);
+            outline: none;
+        }
+
+        .fila {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .fila .campo {
+            flex: 1 1 200px;
+        }
+
+        button {
+            padding: 14px 25px;
+            background-color: #003366;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0055aa;
+        }
+
+        .errores {
+            background: #ffe5e5;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #ff9999;
+            border-radius: 8px;
+            color: #cc0000;
+        }
+
+        /* Responsivo para pantallas pequeñas */
+        @media (max-width: 600px) {
+            .fila {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <h2>Datos personales</h2>
+
+    {% if form.errors %}
+        <div class="errores">
+            <strong>Revisa los siguientes errores:</strong>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="fila">
+            <div class="campo">
+                <label>Apellido paterno</label>
+                {{ form.apellido_paterno }}
+            </div>
+            <div class="campo">
+                <label>Apellido materno</label>
+                {{ form.apellido_materno }}
+            </div>
+        </div>
+
+        <div class="campo">
+            <label>Nombre(s)</label>
+            {{ form.nombres }}
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                <label>Fecha de nacimiento</label>
+                {{ form.fecha_nacimiento }}
+            </div>
+            <div class="campo">
+                <label>Sexo</label>
+                {{ form.sexo }}
+            </div>
+        </div>
+
+        <div class="campo">
+            <label>Lugar de nacimiento</label>
+            {{ form.lugar_nacimiento }}
+        </div>
+
+        <div class="campo">
+            <label>CURP</label>
+            {{ form.curp }}
+        </div>
+
+        <div class="campo">
+            <label>Estado civil</label>
+            {{ form.estado_civil }}
+        </div>
+
+        <h3>Domicilio</h3>
+
+        <div class="campo">
+            <label>Calle</label>
+            {{ form.calle }}
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                <label>Número exterior</label>
+                {{ form.numero_exterior }}
+            </div>
+            <div class="campo">
+                <label>Número interior</label>
+                {{ form.numero_interior }}
+            </div>
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                <label>Entidad federativa</label>
+                {{ form.entidad_federativa }}
+            </div>
+            <div class="campo">
+                <label>Municipio</label>
+                {{ form.municipio }}
+            </div>
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                <label>Ciudad</label>
+                {{ form.ciudad }}
+            </div>
+            <div class="campo">
+                <label>Código Postal</label>
+                {{ form.codigo_postal }}
+            </div>
+        </div>
+
+        <h3>Contacto</h3>
+
+        <div class="fila">
+            <div class="campo">
+                <label>Teléfono personal</label>
+                {{ form.telefono_personal }}
+            </div>
+            <div class="campo">
+                <label>Correo electrónico</label>
+                {{ form.correo_electronico }}
+            </div>
+        </div>
+
+        <button type="submit">Guardar y continuar</button>
+    </form>
+</div>
+
+</body>
+</html>

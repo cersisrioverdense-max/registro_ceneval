@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bloque 3 – Características de la escuela</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .contenedor {
+            background: #fff;
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p.intro {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        fieldset {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+        }
+
+        legend {
+            font-weight: 600;
+            color: #003366;
+            padding: 0 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #003366;
+            box-shadow: 0 0 8px rgba(0,51,102,0.3);
+            outline: none;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px 0;
+            background-color: #003366;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0055aa;
+        }
+
+        /* Mensajes de error */
+        .errores {
+            background: #ffe5e5;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #ff9999;
+            border-radius: 8px;
+            color: #cc0000;
+        }
+
+        @media (max-width: 600px) {
+            .contenedor {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <h2>Bloque 3 · Características de la escuela</h2>
+    <p class="intro">Indica tu grado de acuerdo o frecuencia según corresponda.</p>
+
+    {% if form.errors %}
+        <div class="errores">
+            <strong>Revisa los siguientes errores:</strong>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <fieldset>
+            <legend>1. Clima escolar</legend>
+            <label>Me siento cercano(a) a mis compañeros(as) de esta escuela</label>
+            {{ form.pertenencia }}
+
+            <label>Siento que soy parte de esta escuela o institución educativa</label>
+            {{ form.integracion }}
+
+            <label>En esta escuela me hacen sentir aceptado(a)</label>
+            {{ form.aceptacion }}
+
+            <label>Considero que comparto valores y creencias con la mayoría de mis compañeros(as) y docentes</label>
+            {{ form.valores_compartidos }}
+
+            <label>En esta escuela siempre encuentro personas que me apoyan cuando lo necesito</label>
+            {{ form.apoyo_escolar }}
+        </fieldset>
+
+        <fieldset>
+            <legend>2. Prácticas docentes y ambiente en el aula</legend>
+            <label>¿Con qué frecuencia tus maestros(as) fomentan el respeto entre los alumnos(as)?</label>
+            {{ form.respeto_docente }}
+
+            <label>¿Con qué frecuencia tus maestros(as) tratan de manera justa a todos los alumnos(as)?</label>
+            {{ form.trato_justo }}
+        </fieldset>
+
+        <fieldset>
+            <legend>3. Prácticas docentes para el aprendizaje</legend>
+            <label>¿Con qué frecuencia los maestros(as) explican los temas de manera clara?</label>
+            {{ form.explicacion_clara }}
+
+            <label>¿Con qué frecuencia demuestran estar bien preparados para las materias que imparten?</label>
+            {{ form.preparacion_docente }}
+
+            <label>¿Con qué frecuencia muestran dominio de los temas que enseñan?</label>
+            {{ form.dominio_tema }}
+
+            <label>¿Con qué frecuencia aclaran las dudas de manera precisa?</label>
+            {{ form.resolucion_dudas }}
+        </fieldset>
+
+        <fieldset>
+            <legend>4. Apoyo al aprendizaje</legend>
+            <label>¿Con qué frecuencia recibes retroalimentación sobre tu desempeño académico?</label>
+            {{ form.retroalimentacion }}
+
+            <label>¿Con qué frecuencia tus maestros(as) te motivan a mejorar académicamente?</label>
+            {{ form.motivacion_docente }}
+
+            <label>¿Con qué frecuencia dan seguimiento a tu progreso académico?</label>
+            {{ form.seguimiento_academico }}
+        </fieldset>
+
+        <button type="submit">Guardar y continuar</button>
+    </form>
+</div>
+
+</body>
+</html>

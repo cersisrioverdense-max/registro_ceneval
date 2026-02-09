@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro finalizado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+        .contenedor {
+            max-width: 700px;
+            margin: 80px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        h1 {
+            color: #2e7d32;
+        }
+        p {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 16px;
+            background: #c62828;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Registro completado con éxito</h1>
+
+        <p>
+            Has concluido correctamente el cuestionario de registro.
+        </p>
+
+        <p>
+            Tu información ha sido guardada y será utilizada únicamente
+            con fines académicos.
+        </p>
+
+        <p>
+            Puedes cerrar sesión cuando lo desees.
+        </p>
+
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn">
+                Cerrar sesión
+            </button>
+        </form>
+    </div>
+</body>
+</html>

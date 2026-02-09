@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bloque 2 – Trayectoria académica</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .contenedor {
+            background: #fff;
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p.intro {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        fieldset {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+        }
+
+        legend {
+            font-weight: 600;
+            color: #003366;
+            padding: 0 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #003366;
+            box-shadow: 0 0 8px rgba(0,51,102,0.3);
+            outline: none;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px 0;
+            background-color: #003366;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0055aa;
+        }
+
+        /* Mensajes de error */
+        .errores {
+            background: #ffe5e5;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #ff9999;
+            border-radius: 8px;
+            color: #cc0000;
+        }
+
+        /* Responsivo para pantallas pequeñas */
+        @media (max-width: 600px) {
+            .contenedor {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <h2>Bloque 2 · Trayectoria académica y hábitos de estudio</h2>
+    <p class="intro">Responde con sinceridad. No existen respuestas correctas o incorrectas.</p>
+
+    {% if form.errors %}
+        <div class="errores">
+            <strong>Revisa los siguientes errores:</strong>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- CONTEXTO ACADÉMICO -->
+        <fieldset>
+            <legend>1. Contexto académico</legend>
+            <label>¿En qué tipo de institución cursaste el bachillerato?</label>
+            {{ form.tipo_institucion }}
+
+            <label>¿Cuál era el régimen de la institución?</label>
+            {{ form.regimen }}
+
+            <label>¿Qué tipo de bachillerato cursaste?</label>
+            {{ form.bachillerato }}
+
+            <label>Área o especialidad del bachillerato</label>
+            {{ form.area }}
+
+            <label>¿En qué turno estudiaste?</label>
+            {{ form.turno }}
+
+            <label>Promedio general obtenido en el bachillerato</label>
+            {{ form.promedio }}
+
+            <label>¿Recibiste algún tipo de beca durante el bachillerato?</label>
+            {{ form.beca }}
+
+            <label>Indica el principal motivo por el cual recibiste la beca</label>
+            {{ form.motivo_beca }}
+        </fieldset>
+
+        <!-- MOTIVACIÓN -->
+        <fieldset>
+            <legend>2. Motivación y expectativas académicas</legend>
+            <label>¿Cuál es el nivel máximo de estudios que deseas alcanzar?</label>
+            {{ form.nivel_estudios }}
+
+            <label>¿Qué tan importante es para ti continuar estudiando?</label>
+            {{ form.importancia_estudiar }}
+
+            <label>¿Cuál es tu principal motivo para continuar con tus estudios?</label>
+            {{ form.motivo_continuar }}
+
+            <label>¿Cuentas con el apoyo de tu familia para continuar estudiando?</label>
+            {{ form.apoyo_familiar }}
+
+            <label>¿Eres la primera persona de tu familia en cursar este nivel educativo?</label>
+            {{ form.primera_generacion }}
+        </fieldset>
+
+        <!-- HÁBITOS DE ESTUDIO -->
+        <fieldset>
+            <legend>3. Hábitos de estudio</legend>
+            <label>¿Con qué frecuencia planificas tu tiempo de estudio?</label>
+            {{ form.planeacion }}
+
+            <label>¿Con qué frecuencia organizas tu material académico?</label>
+            {{ form.organizacion_material }}
+
+            <label>¿Con qué frecuencia estudias de manera independiente?</label>
+            {{ form.estudio_independiente }}
+
+            <label>¿Con qué frecuencia repasas los temas vistos en clase?</label>
+            {{ form.repaso }}
+
+            <label>¿Con qué frecuencia buscas información adicional por tu cuenta?</label>
+            {{ form.investigacion }}
+        </fieldset>
+
+        <!-- TRABAJO EN EQUIPO -->
+        <fieldset>
+            <legend>4. Trabajo en equipo y convivencia académica</legend>
+            <label>¿Con qué frecuencia colaboras con tus compañeros en actividades académicas?</label>
+            {{ form.colaboracion }}
+
+            <label>¿Con qué frecuencia compartes información académica con tus compañeros?</label>
+            {{ form.comparte_info }}
+
+            <label>¿Con qué frecuencia escuchas y consideras las opiniones de los demás?</label>
+            {{ form.escucha }}
+
+            <label>¿Con qué frecuencia apoyas a compañeros que tienen dificultades académicas?</label>
+            {{ form.ayuda }}
+
+            <label>¿Con qué frecuencia propones ideas en trabajos grupales?</label>
+            {{ form.propone }}
+
+            <label>¿Con qué frecuencia manejas adecuadamente los conflictos en trabajos en equipo?</label>
+            {{ form.conflictos }}
+        </fieldset>
+
+        <!-- RESPONSABILIDAD -->
+        <fieldset>
+            <legend>5. Responsabilidad académica</legend>
+            <label>¿Con qué frecuencia cumples con tus responsabilidades académicas?</label>
+            {{ form.cumple }}
+
+            <label>¿Con qué frecuencia entregas tus trabajos en el tiempo establecido?</label>
+            {{ form.entrega_tiempo }}
+
+            <label>¿Con qué frecuencia asistes regularmente a clases?</label>
+            {{ form.asiste_clases }}
+
+            <label>¿Con qué frecuencia perseveras ante dificultades académicas?</label>
+            {{ form.perseverancia }}
+        </fieldset>
+
+        <!-- CONDICIONES -->
+        <fieldset>
+            <legend>6. Condiciones personales para el estudio</legend>
+            <label>¿Cuentas con un espacio adecuado en casa para estudiar?</label>
+            {{ form.espacio_estudio }}
+
+            <label>¿Tienes acceso a tecnología (computadora e internet) para realizar tus estudios?</label>
+            {{ form.acceso_tecnologia }}
+
+            <label>¿Has tenido dificultades económicas que hayan afectado tus estudios?</label>
+            {{ form.dificultades_economicas }}
+
+            <label>¿Has tenido dificultades académicas importantes durante tu trayectoria escolar?</label>
+            {{ form.dificultades_academicas }}
+        </fieldset>
+
+        <button type="submit">Guardar y continuar</button>
+    </form>
+</div>
+
+</body>
+</html>
