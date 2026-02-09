@@ -1,1 +1,1 @@
-web: gunicorn registro_ceneval_cesr.wsgi
+web: gunicorn config.wsgi
